@@ -2,171 +2,244 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Шампунь проти сивини</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{
-margin:0;
-background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover fixed;
-color:#333;
-}
-.overlay{background:rgba(255,255,255,.92);min-height:100vh;padding:20px}
-.container{max-width:900px;margin:auto}
-h1,h2{text-align:center}
-.price{text-align:center;font-size:28px;margin:15px 0}
-.old-price{text-decoration:line-through;color:#999;margin-right:10px}
-.new-price{color:#e53935;font-weight:bold}
-.timer{text-align:center;font-size:22px;color:#e53935;font-weight:bold;animation:blink 1s infinite}
-@keyframes blink{50%{opacity:.3}}
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial,sans-serif; background:#f5f5f5; color:#222; overflow-x:hidden; }
 
-button{
-background:#e53935;
-color:#fff;
-border:none;
-padding:15px 30px;
-font-size:18px;
-border-radius:8px;
-cursor:pointer;
-width:100%;
-margin-top:10px
-}
-button:hover{opacity:.9}
-
-.section{background:#fff;border-radius:10px;padding:20px;margin:20px 0}
-
-form input{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:6px
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9");
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.reviews{display:grid;grid-template-columns:1fr;gap:10px}
-.review{background:#f7f7f7;padding:10px;border-radius:6px}
+.hero h1 { font-size: 42px; margin-bottom: 15px; animation: fadeInDown 1s ease; }
+.hero p { font-size: 18px; max-width:700px; margin:auto 0 25px; animation: fadeInDown 1.5s ease; }
 
-.viber-float{
-position:fixed;
-right:20px;
-bottom:20px;
-width:80px;
-height:80px;
-background:#7c529e;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-weight:bold;
-font-size:16px;
-text-decoration:none;
-z-index:999;
+/* PRICE */
+.price-box {
+    display:inline-flex; align-items:center; gap:15px; padding:18px 25px; border-radius:14px;
+    background:#fff; color:#000; flex-wrap:wrap; justify-content:center; animation: fadeInUp 2s ease;
 }
-.viber-float:hover{transform:scale(1.1)}
 
-@media(min-width:700px){
-.reviews{grid-template-columns:1fr 1fr}
+.badge { background:#d60000; color:#fff; padding:6px 12px; border-radius:20px; font-size:14px;
+    font-weight:bold; animation: blink 1.2s infinite;
 }
+@keyframes blink {0%{opacity:1}50%{opacity:.4}100%{opacity:1}}
+.old-price { text-decoration: line-through; color:#888; font-size:18px; }
+.new-price { font-size:32px; font-weight:bold; }
+.order-btn { background:#000; color:#fff; padding:14px 26px; border-radius:6px;
+    text-decoration:none; font-size:16px; animation: pulse 2s infinite;
+}
+.order-btn:hover { background:#333; }
+
+.timer { margin-top:20px; font-size:20px; font-weight:bold; color:#ffdddd; }
+
+/* SECTIONS */
+section { max-width:1000px; margin:40px auto; background:#fff; padding:40px 20px; border-radius:12px; opacity:0; transform:translateY(40px); transition:0.8s ease; }
+section.visible { opacity:1; transform:translateY(0); }
+h2 { text-align:center; margin-bottom:25px; }
+
+/* BENEFITS */
+.benefits { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; text-align:center; }
+.benefit { padding:20px; border-radius:10px; background:#f8f8f8; transition:0.3s; }
+.benefit:hover { transform:scale(1.05); }
+
+/* PHOTOS */
+.photos { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; }
+.photo { height:200px; background:#ddd; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    transition:0.5s; cursor:pointer;
+}
+.photo:hover { transform:scale(1.1); }
+
+/* INFO */
+.info { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; text-align:center; }
+
+/* FORM */
+.order-form input { width:100%; padding:14px; margin-bottom:15px; border-radius:6px; border:1px solid #ccc; font-size:16px; }
+.order-form button { width:100%; padding:16px; background:#000; color:#fff; border:none; font-size:18px; border-radius:6px; cursor:pointer; animation: pulse 2s infinite; }
+.order-form button:hover { background:#333; }
+
+/* VIBER */
+.viber-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 80px;
+    height: 80px;
+    background: #7c529e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,.3);
+    z-index: 999;
+    transition: 0.3s;
+}
+.viber-float:hover { transform: scale(1.1); }
+
+/* FOOTER */
+footer { text-align:center; padding:20px; font-size:14px; color:#777; }
+
+/* ANIMATIONS */
+@keyframes pulse { 0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)} }
+@keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+/* TESTIMONIALS */
+.testimonials { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
+.testimonial { min-width:260px; background:#f8f8f8; padding:20px; border-radius:10px; flex-shrink:0; transition:0.3s; }
+.testimonial:hover { transform:scale(1.05); }
 </style>
 </head>
 
 <body>
-<div class="overlay">
-<div class="container">
 
-<h1>Шампунь проти сивини</h1>
-<p style="text-align:center">Повертає природний колір волосся без фарбування</p>
+<div class="hero">
+    <h1>Шампунь проти сивини</h1>
+    <p>Помітне відновлення природного кольору волосся вже після кількох застосувань</p>
 
-<div class="price">
-<span class="old-price">1299 грн</span>
-<span class="new-price">699 грн</span>
+    <div class="price-box">
+        <span class="badge">АКЦІЯ</span>
+        <div class="old-price">1299 грн</div>
+        <div class="new-price">799 грн</div>
+        <a href="#order" class="order-btn">Замовити</a>
+    </div>
+
+    <div class="timer" id="timer"></div>
 </div>
 
-<div class="timer" id="timer">До кінця акції: 15:00</div>
-
-<button onclick="document.getElementById('order').scrollIntoView()">Замовити зараз</button>
-
-<div class="section">
-<h2>Переваги</h2>
-<ul>
-<li>Без аміаку та фарб</li>
-<li>Підходить чоловікам і жінкам</li>
-<li>Результат вже за 7–10 днів</li>
-<li>Живить та зміцнює волосся</li>
-</ul>
+<section class="visible">
+<h2>Чому обирають нас</h2>
+<div class="benefits">
+    <div class="benefit">🌿 Натуральні компоненти</div>
+    <div class="benefit">✨ Відновлює колір без фарби</div>
+    <div class="benefit">💆‍♂️ Підходить для щоденного використання</div>
+    <div class="benefit">🇺🇦 Доставка по всій Україні</div>
 </div>
+</section>
 
-<div class="section">
-<h2>Доставка та оплата</h2>
-<p>🚚 Доставка по Україні 1–3 дні</p>
-<p>💳 Оплата при отриманні або онлайн</p>
+<section>
+<h2>Фото продукту</h2>
+<div class="photos">
+    <div class="photo">Фото 1</div>
+    <div class="photo">Фото 2</div>
+    <div class="photo">Фото 3</div>
 </div>
+</section>
 
-<div class="section">
-<h2>Гарантії</h2>
-<p>✔ 100% гарантія якості</p>
-<p>✔ Повернення коштів протягом 14 днів</p>
+<section>
+<h2>Доставка • Оплата • Гарантії</h2>
+<div class="info">
+    <div><b>🚚 Доставка</b><br>1–3 дні по Україні</div>
+    <div><b>💳 Оплата</b><br>При отриманні</div>
+    <div><b>✅ Гарантія</b><br>Повернення 14 днів</div>
 </div>
+</section>
 
-<div class="section">
-<h2>Відгуки клієнтів</h2>
-<div class="reviews">
-<div class="review">Олена, Київ — Волосся потемніло вже за тиждень!</div>
-<div class="review">Ігор, Львів — Реально працює, не очікував.</div>
-<div class="review">Марина, Одеса — Дуже приємний запах.</div>
-<div class="review">Сергій, Харків — Сивина майже зникла.</div>
-<div class="review">Наталя — Рекомендую всім!</div>
-<div class="review">Оксана — Користуюсь вже місяць, супер.</div>
-<div class="review">Віктор — Волосся стало густіше.</div>
-<div class="review">Юлія — Дякую за швидку доставку.</div>
-<div class="review">Андрій — Ефект реально є.</div>
-<div class="review">Світлана — Не сушить волосся.</div>
-<div class="review">Роман — Замовляв для батька.</div>
-<div class="review">Ірина — Приємно здивована.</div>
-<div class="review">Валентина — Сивини стало менше.</div>
-<div class="review">Максим — Буду замовляти ще.</div>
-<div class="review">Катерина — Натуральний склад.</div>
-<div class="review">Олег — Краще ніж фарба.</div>
-<div class="review">Тетяна — Видно результат.</div>
-<div class="review">Дмитро — Хороший продукт.</div>
-<div class="review">Алла — Волосся блискуче.</div>
-<div class="review">Павло — Працює 👍</div>
+<section>
+<h2>Відгуки наших клієнтів</h2>
+<div class="testimonials">
+    <div class="testimonial">“Помітний результат вже за тиждень” — Олена</div>
+    <div class="testimonial">“Сивини стало значно менше” — Ігор</div>
+    <div class="testimonial">“Не сушить волосся” — Марія</div>
+    <div class="testimonial">“Краще ніж фарба” — Сергій</div>
+    <div class="testimonial">“Приємний запах” — Наталя</div>
+    <div class="testimonial">“Користуюсь місяць — ефект є” — Оксана</div>
+    <div class="testimonial">“Замовляю вже вдруге” — Віктор</div>
+    <div class="testimonial">“Рекомендую всім” — Юлія</div>
+    <div class="testimonial">“Підійшов для чутливої шкіри” — Андрій</div>
+    <div class="testimonial">“Волосся виглядає молодше” — Світлана</div>
+    <div class="testimonial">“Доставка швидка” — Роман</div>
+    <div class="testimonial">“Ефект натуральний” — Ірина</div>
+    <div class="testimonial">“Сивина зникає поступово” — Валентина</div>
+    <div class="testimonial">“Зручний у використанні” — Максим</div>
+    <div class="testimonial">“Без подразнення” — Катерина</div>
+    <div class="testimonial">“Гарний склад” — Олег</div>
+    <div class="testimonial">“Реально працює” — Тетяна</div>
+    <div class="testimonial">“Волосся стало густіше” — Дмитро</div>
+    <div class="testimonial">“Результат помітний” — Алла</div>
+    <div class="testimonial">“Я задоволений покупкою” — Павло</div>
+    <div class="testimonial">“Замовляла для чоловіка” — Лідія</div>
+    <div class="testimonial">“Все відповідає опису” — Богдан</div>
 </div>
-</div>
+</section>
 
-<div class="section" id="order">
+<section id="order">
 <h2>Залишити заявку</h2>
-<form id="form">
-<input type="text" id="name" placeholder="Ваше ПІБ" required>
-<input type="tel" id="phone" placeholder="Номер телефону" required>
-<button type="submit">Замовити</button>
+<form class="order-form" id="tgForm">
+    <input type="text" name="name" placeholder="ПІБ" required>
+    <input type="tel" name="phone" placeholder="Номер телефону" required>
+    <button type="submit">Замовити</button>
 </form>
-</div>
+</section>
 
-</div>
-</div>
+<footer>© 2025 Всі права захищені</footer>
 
 <a class="viber-float" href="viber://chat?number=+380501234567">Viber</a>
 
 <script>
-let time=900;
-setInterval(()=>{
-let m=Math.floor(time/60);
-let s=time%60;
-document.getElementById('timer').innerText=
-`До кінця акції: ${m}:${s<10?'0'+s:s}`;
-time--;
-if(time<0)time=900;
-},1000);
+let actionDuration = 24*60*60*1000;
+let endTime = localStorage.getItem("endTime");
+if (!endTime || new Date().getTime() > endTime) {
+    endTime = new Date().getTime() + actionDuration;
+    localStorage.setItem("endTime", endTime);
+}
+function updateTimer() {
+    const now = new Date().getTime();
+    let distance = endTime - now;
+    if(distance <=0){
+        endTime = new Date().getTime() + actionDuration;
+        localStorage.setItem("endTime", endTime);
+        distance = actionDuration;
+    }
+    const h=Math.floor(distance/(1000*60*60));
+    const m=Math.floor((distance%(1000*60*60))/60000);
+    const s=Math.floor((distance%60000)/1000);
+    document.getElementById("timer").innerHTML = "До кінця акції: "+h+"г "+m+"хв "+s+"с";
+}
+setInterval(updateTimer,1000); updateTimer();
 
-document.getElementById('form').addEventListener('submit',function(e){
-e.preventDefault();
-const text=`Нова заявка:%0AПІБ: ${name.value}%0AТелефон: ${phone.value}`;
-fetch(`https://api.telegram.org/bot8538558243:AAFsWxP4Yt0qSyj2zLGDiuj9-at1BXbV-ww/sendMessage?chat_id=7112801577&text=${text}`);
-alert('Заявку відправлено!');
-this.reset();
+const TOKEN="8538558243:AAFsWxP4Yt0qSyj2zLGDiuj9-at1BXbV-ww";
+const CHAT_ID="7112801577";
+tgForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
+        method:"POST",
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+            chat_id:CHAT_ID,
+            text:`🧴 НОВЕ ЗАМОВЛЕННЯ\n👤 ${tgForm.name.value}\n📞 ${tgForm.phone.value}\n💸 799 грн`
+        })
+    }).then(()=>{
+        alert("Заявку відправлено ✅");
+        tgForm.reset();
+    }).catch(()=>{
+        alert("Помилка. Спробуйте ще раз.");
+    });
+});
+
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", ()=>{
+    const trigger = window.innerHeight*0.85;
+    sections.forEach(s=>{
+        if(s.getBoundingClientRect().top < trigger){
+            s.classList.add("visible");
+        }
+    });
 });
 </script>
 
