@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Шампунь проти сивини</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial,sans-serif; background:#f5f5f5; color:#222; overflow-x:hidden; }
+
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9");
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 { font-size: 42px; margin-bottom: 15px; animation: fadeInDown 1s ease; }
+.hero p { font-size: 18px; max-width:700px; margin:auto 0 25px; animation: fadeInDown 1.5s ease; }
+
+/* PRICE */
+.price-box {
+    display:inline-flex; align-items:center; gap:15px; padding:18px 25px; border-radius:14px;
+    background:#fff; color:#000; flex-wrap:wrap; justify-content:center; animation: fadeInUp 2s ease;
+}
+
+.badge { background:#d60000; color:#fff; padding:6px 12px; border-radius:20px; font-size:14px;
+    font-weight:bold; animation: blink 1.2s infinite;
+}
+@keyframes blink {0%{opacity:1}50%{opacity:.4}100%{opacity:1}}
+.old-price { text-decoration: line-through; color:#888; font-size:18px; }
+.new-price { font-size:32px; font-weight:bold; }
+.order-btn { background:#000; color:#fff; padding:14px 26px; border-radius:6px;
+    text-decoration:none; font-size:16px; animation: pulse 2s infinite;
+}
+.order-btn:hover { background:#333; }
+
+.timer { margin-top:20px; font-size:20px; font-weight:bold; color:#ffdddd; }
+
+/* SECTIONS */
+section { max-width:1000px; margin:40px auto; background:#fff; padding:40px 20px; border-radius:12px; opacity:0; transform:translateY(40px); transition:0.8s ease; }
+section.visible { opacity:1; transform:translateY(0); }
+h2 { text-align:center; margin-bottom:25px; }
+
+/* BENEFITS */
+.benefits { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; text-align:center; }
+.benefit { padding:20px; border-radius:10px; background:#f8f8f8; transition:0.3s; }
+.benefit:hover { transform:scale(1.05); }
+
+/* PHOTOS */
+.photos { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; }
+.photo { height:200px; background:#ddd; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    transition:0.5s; cursor:pointer;
+}
+.photo:hover { transform:scale(1.1); }
+
+/* INFO */
+.info { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; text-align:center; }
+
+/* FORM */
+.order-form input { width:100%; padding:14px; margin-bottom:15px; border-radius:6px; border:1px solid #ccc; font-size:16px; }
+.order-form button { width:100%; padding:16px; background:#000; color:#fff; border:none; font-size:18px; border-radius:6px; cursor:pointer; animation: pulse 2s infinite; }
+.order-form button:hover { background:#333; }
+
+/* VIBER (текстовая кнопка) */
+.viber-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 80px;
+    height: 80px;
+    background: #7c529e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,.3);
+    z-index: 999;
+    transition: 0.3s;
+}
+.viber-float:hover { transform: scale(1.1); }
+
+/* FOOTER */
+footer { text-align:center; padding:20px; font-size:14px; color:#777; }
+
+/* ANIMATIONS */
+@keyframes pulse { 0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)} }
+@keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+/* TESTIMONIALS */
+.testimonials { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
+.testimonial { min-width:250px; background:#f8f8f8; padding:20px; border-radius:10px; flex-shrink:0; transition:0.3s; }
+.testimonial:hover { transform:scale(1.05); }
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Шампунь проти сивини</h1>
+    <p>Помітне відновлення природного кольору волосся вже після кількох застосувань</p>
+
+    <div class="price-box">
+        <span class="badge">АКЦІЯ</span>
+        <div class="old-price">1299 грн</div>
+        <div class="new-price">799 грн</div>
+        <a href="#order" class="order-btn">Замовити</a>
+    </div>
+
+    <div class="timer" id="timer"></div>
+</div>
+
+<section class="visible">
+<h2>Чому обирають нас</h2>
+<div class="benefits">
+    <div class="benefit">🌿 Натуральні компоненти</div>
+    <div class="benefit">✨ Відновлює колір без фарби</div>
+    <div class="benefit">💆‍♂️ Підходить для щоденного використання</div>
+    <div class="benefit">🇺🇦 Доставка по всій Україні</div>
+</div>
+</section>
+
+<section>
+<h2>Фото продукту</h2>
+<div class="photos">
+    <div class="photo">Фото 1</div>
+    <div class="photo">Фото 2</div>
+    <div class="photo">Фото 3</div>
+</div>
+</section>
+
+<section>
+<h2>Доставка • Оплата • Гарантії</h2>
+<div class="info">
+    <div><b>🚚 Доставка</b><br>1–3 дні по Україні</div>
+    <div><b>💳 Оплата</b><br>При отриманні</div>
+    <div><b>✅ Гарантія</b><br>Повернення 14 днів</div>
+</div>
+</section>
+
+<section>
+<h2>Відгуки наших клієнтів</h2>
+<div class="testimonials">
+    <div class="testimonial">“Використовую тиждень і вже помічаю зміни!” — Олена</div>
+    <div class="testimonial">“Найкращий шампунь, який я пробував!” — Ігор</div>
+    <div class="testimonial">“Дуже задоволена результатом” — Марія</div>
+</div>
+</section>
+
+<section id="order">
+<h2>Залишити заявку</h2>
+<form class="order-form" id="tgForm">
+    <input type="text" name="name" placeholder="ПІБ" required>
+    <input type="tel" name="phone" placeholder="Номер телефону" required>
+    <button type="submit">Замовити</button>
+</form>
+</section>
+
+<footer>© 2025 Всі права захищені</footer>
+
+<!-- Плавающая кнопка Viber (текстовая) -->
+<a class="viber-float" href="viber://chat?number=+380501234567">
+  Viber
+</a>
+
+<script>
+/* TIMER WITH AUTO RESET */
+let actionDuration = 24*60*60*1000; 
+let endTime = localStorage.getItem("endTime");
+if (!endTime || new Date().getTime() > endTime) { endTime = new Date().getTime() + actionDuration; localStorage.setItem("endTime", endTime); }
+function updateTimer() {
+    const now = new Date().getTime();
+    let distance = endTime - now;
+    if(distance <=0){ endTime = new Date().getTime() + actionDuration; localStorage.setItem("endTime", endTime); distance=actionDuration; }
+    const h=Math.floor(distance/(1000*60*60));
+    const m=Math.floor((distance%(1000*60*60))/60000);
+    const s=Math.floor((distance%60000)/1000);
+    document.getElementById("timer").innerHTML = "До кінця акції: "+h+"г "+m+"хв "+s+"с";
+}
+setInterval(updateTimer,1000); updateTimer();
+
+/* TELEGRAM */
+const TOKEN="8538558243:AAFsWxP4Yt0qSyj2zLGDiuj9-at1BXbV-ww";
+const CHAT_ID="7112801577";
+tgForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
+        method:"POST", headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+            chat_id:CHAT_ID,
+            text:`🧴 НОВЕ ЗАМОВЛЕННЯ\n👤 ${tgForm.name.value}\n📞 ${tgForm.phone.value}\n💸 799 грн`
+        })
+    }).then(()=>{ alert("Заявку відправлено ✅"); tgForm.reset(); }).catch(()=>{ alert("Помилка. Спробуйте ще раз."); });
+});
+
+/* ANIMATION ON SCROLL */
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", ()=>{
+    const trigger = window.innerHeight*0.85;
+    sections.forEach(s=>{
+        const top = s.getBoundingClientRect().top;
+        if(top < trigger) s.classList.add("visible");
+    });
+});
+</script>
+
+</body>
+</html>
